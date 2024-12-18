@@ -1,0 +1,57 @@
+
+[
+    {
+        "id": 1,
+        "name": "Меркурий",
+        "size": 4879,
+        "img": "https://space-facts.com/wp-content/uploads/mercury.png"
+    },
+    {
+        "id": 2,
+        "name": "Венера",
+        "size": 12104,
+        "img": "https://space-facts.com/wp-content/uploads/venus.png"
+    },
+    {
+        "id": 3,
+        "name": "Земля",
+        "size": 12742,
+        "img": "https://space-facts.com/wp-content/uploads/earth.png"
+    },
+    {
+        "id": 4,
+        "name": "Марс",
+        "size": 6779,
+        "img": "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Юпитер",
+        "size": 139822,
+        "img": "https://space-facts.com/wp-content/uploads/jupiter.png"
+    },
+    {
+        "id": 6,
+        "name": "Сатурн",
+        "size": 116464,
+        "img": "https://space-facts.com/wp-content/uploads/saturn.png"
+    },
+    {
+        "id": 7,
+        "name": "Уран",
+        "size": 50724,
+        "img": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Нептун",
+        "size": 49244,
+        "img": "https://space-facts.com/wp-content/uploads/neptune.png"
+    },
+    {
+        "id": 9,
+        "name": "Луна",
+        "size": 3475,
+        "img": "https://space-facts.com/wp-content/uploads/moon.png"
+    }
+]

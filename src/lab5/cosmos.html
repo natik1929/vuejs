@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Космос</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            background-color: #112b3c;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .sidebar input,
+        .sidebar label {
+            color: #d8e6eb;
+            display: block;
+            width: 100%;
+        }
+        .sidebar input.form-control {
+            width: calc(100% - 10px);
+            margin-bottom: 10px;
+        }
+        body {
+            background-color: #0b1d26;
+            color: #d8e6eb;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #81d4f3;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #112b3c;
+            color: #d8e6eb;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            object-fit: contain;
+            height: 250px;
+        }
+        input.form-control {
+            background-color: #112b3c;
+            color: #d8e6eb;
+            border: 1px solid #81d4f3;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="radio"]:checked + label {
+            color: #81d4f3;
+        }
+        input.form-control::placeholder {
+            color: #81d4f3;
+        }
+        input.form-control:focus {
+            border-color: #81d4f3;
+            box-shadow: 0 0 5px rgba(129, 212, 243, 0.5);
+        }
+    </style>
+</head>
+<body>
+<div id="app" class="container-fluid mt-4">
+    <h1 class="text-center">ПЛАНЕТЫ СОЛНЕЧНОЙ СИСТЕМЫ</h1>
+
+    <div class="row"><div class="col-md-3"><div class="sidebar mb-3">
+        <input type="text" v-model="searchString" class="form-control w-70" placeholder="Поиск ">
+    </div><div class="mb-3">
+        <label class="mx-2">
+            <input type="radio" value="name" v-model="sortKey"> Сортировка по названию
+        </label>
+        <label class="mx-2">
+            <input type="radio" value="size" v-model="sortKey"> Сортировка по размеру
+        </label>
+    </div></div><div class="col-md-9"><ul class="d-flex flex-wrap justify-content-center">
+        <li v-for="object in sortedObjects" :key="object.id" class="card m-2 p-3" style="width: 300px;">
+            <img :src="object.img" class="card-img-top" :alt="object.name" style="height: 250px;">
+            <div class="card-body">
+                <h5 class="card-title">{{ object.name }}</h5>
+                <p class="card-text">Размер: {{ object.size }} км</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script type="module" src="cosmos.js"></script>
+
+</body>
+</html>
