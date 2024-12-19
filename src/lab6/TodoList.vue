@@ -19,18 +19,21 @@ export default {
   components: { AddTodo, TodoItem },
   data() {
     return {
-      todos: [],
-      nextId: 1,
+      todos: [], // Список задач
+      nextId: 1, // Следующий уникальный идентификатор для задачи
     };
   },
   methods: {
     addTodo(text) {
+      // Добавляет новую задачу в список
       this.todos.push({ id: this.nextId++, text, completed: false });
     },
     deleteTodo(id) {
+      // Удаляет задачу по её ID
       this.todos = this.todos.filter((todo) => todo.id !== id);
     },
     toggleComplete(id) {
+      // Переключает статус выполнения задачи (completed)
       const todo = this.todos.find((todo) => todo.id === id);
       if (todo) {
         todo.completed = !todo.completed;
@@ -39,6 +42,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .todo-list {

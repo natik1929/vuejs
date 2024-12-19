@@ -54,38 +54,51 @@ export default {
   },
   methods: {
     getWeather() {
+      // Проверяем минимальную длину названия города
       if(this.city.trim().length < 2) {
         this.weatherError = "Нужно название более одного символа :)";
         return false;
       }
 
+      // Сбрасываем предыдущие данные и ошибки
       this.weatherError = "";
       this.regionCities = [];
       this.averageTemp = null;
 
+      // Запрос текущей погоды
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=0ba39c23e0dd0a5b63ccdd6354473356`)
         .then(res => {
+          // Сохраняем данные о погоде
           this.weatherInfo = res.data;
+
+          // Получаем координаты для поиска городов региона
           const { lat, lon } = res.data.coord;
           this.getRegionCities(lat, lon);
         })
         .catch(() => {
+          // Обрабатываем ошибку
           this.weatherError = "Не удалось найти данные о городе.";
         });
     },
 
     getRegionCities(lat, lon) {
+      // Запрос городов в заданном регионе (окрестности города)
       axios.get(`https://api.openweathermap.org/data/2.5/box/city?bbox=${lon-5},${lat-5},${lon+5},${lat+5},10&units=metric&appid=0ba39c23e0dd0a5b63ccdd6354473356`)
         .then(res => {
+          // Сохраняем список городов
           this.regionCities = res.data.list;
+
+          // Рассчитываем среднюю температуру
           this.calculateAverageTemperature();
         })
         .catch(() => {
+          // Обрабатываем ошибку
           this.weatherError = "Не удалось найти данные о регионе.";
         });
     },
 
     calculateAverageTemperature() {
+      // Рассчитываем среднюю температуру в регионе
       if (this.regionCities.length === 0) return;
       const totalTemp = this.regionCities.reduce((sum, city) => sum + city.main.temp, 0);
       this.averageTemp = (totalTemp / this.regionCities.length).toFixed(2);

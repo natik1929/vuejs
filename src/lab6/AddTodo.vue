@@ -13,14 +13,14 @@
 export default {
   data() {
     return {
-      newTodo: "",
+      newTodo: "", // Хранит текст, введённый пользователем
     };
   },
   methods: {
     addTodo() {
-      if (this.newTodo.trim()) {
+      if (this.newTodo.trim()) { // Проверяет, что строка не пустая или состоит не только из пробелов
         this.$emit("add-todo", this.newTodo);
-        this.newTodo = "";
+        this.newTodo = ""; // Очищает поле ввода
       }
     },
   },

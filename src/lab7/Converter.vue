@@ -39,18 +39,20 @@ export default {
   name: 'Converter',
   data() {
     return {
-      btcRates: {},
-      btcAmount: 1,
-      convertTo: 'USD',
-      btcError: ''
+      btcRates: {},    // Содержит курсы биткоина в разных валютах
+      btcAmount: 1,    // Количество биткоинов по умолчанию
+      convertTo: 'USD', // Валюта для конвертации (по умолчанию - USD)
+      btcError: ''     // Сообщение об ошибке
     };
   },
   methods: {
+    // Метод для получения текущих курсов биткоина
     getBitcoinRates() {
-      this.btcError = '';
+      this.btcError = '';  // Сбрасываем ошибку
       axios
         .get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,eur,gbp')
         .then(response => {
+          // Заполняем объект btcRates данными с API
           this.btcRates = {
             USD: response.data.bitcoin.usd,
             EUR: response.data.bitcoin.eur,
@@ -58,20 +60,23 @@ export default {
           };
         })
         .catch(err => {
+          // В случае ошибки при получении данных
           this.btcError = 'Ошибка при получении данных о курсе биткоина';
           console.error(err);
         });
     },
+    // Метод для конвертации биткоинов в другую валюту
     convertBitcoin(amount, currency) {
       if (!this.btcRates[currency]) {
+        // Если курс для выбранной валюты не найден
         this.btcError = 'Выберите правильную валюту для конвертации';
-        return 0;
+        return 0; // Возвращаем 0
       }
-      return amount * this.btcRates[currency];
+      return amount * this.btcRates[currency]; // Конвертируем биткоины в выбранную валюту
     }
   },
   created() {
-    this.getBitcoinRates();
+    this.getBitcoinRates();  // При создании компонента сразу получаем курсы
   }
 };
 </script>
